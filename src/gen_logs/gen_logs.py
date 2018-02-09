@@ -56,9 +56,14 @@ def main():
     items_shapes = []
     for shape in args.shape:
         parsed = re.match(r'(?P<function>[^\(]*)\((?P<params>[0-9., ]+)\)', shape)
-        function = parsed.group('function')
-        params = [float(x) for x in parsed.group('params').split(',')]
-        items_shapes.append(partial(getattr(random, function), *params))
+        if parsed:
+            function = parsed.group('function')
+            params = [float(x) for x in parsed.group('params').split(',')]
+            items_shapes.append(partial(getattr(random, function), *params))
+        parsed = re.match(r'\[(?P<weights>[0-9., ]+)\]', shape)
+        if parsed:
+            weights = [float(x) for x in parsed.group('weights').split(',')]
+            items_shapes.append(lambda: random.choices(list(range(len(weights))), weights)[0])
     for line in gen_logs(args.line_qty, args.user_qty, items_shapes):
         if args.human_readable:
             print(line)

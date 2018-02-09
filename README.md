@@ -5,6 +5,12 @@ optionally in categories and optionaly any depth of category, and
 controlling their distribution.
 
 
+# Usage
+
+Distructions can be given either as a `random` function, like
+`normalvariate(7.5, 1)`, or a list of weights, like `[0.1, 0.2, 0.3, 0.4]`.
+
+
 # Examples
 
 Generate users consuming items:

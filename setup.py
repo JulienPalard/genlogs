@@ -3,7 +3,7 @@
 from distutils.core import setup
 
 setup(name='genlogs',
-      version='0.1',
+      version='0.2',
       description='Generate logs according to given distributiosn',
       author='Julien Palard',
       author_email='julien@palard.fr',
